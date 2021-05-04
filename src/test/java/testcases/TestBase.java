@@ -4,38 +4,39 @@ import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.chrome.ChromeOptions;
-import utils.Constant;
+import utils.ConfigFileReader;
 
 public class TestBase {
 
     public static WebDriver driver = null;
     public static String browserName;
     public static String projectPath;
+    public static ConfigFileReader configFileReader;
 
 
     public static void initialize() {
-        browserName = Constant.browserName;
-        projectPath = System.getProperty(Constant.projectPath);
+        configFileReader = new ConfigFileReader();
+        browserName = configFileReader.getBrowserName();
+        projectPath = System.getProperty(configFileReader.getProjectPath());
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 
 
         if (driver == null) {
-            if (browserName.equalsIgnoreCase(Constant.browserName)) {
-                System.setProperty(Constant.driverProperty, projectPath + Constant.driverDirectory);
+            if (browserName.equalsIgnoreCase(configFileReader.getBrowserName())) {
+                System.setProperty(configFileReader.getDriverProperty(), projectPath + configFileReader.getDriverDirectory());
                 driver = new ChromeDriver();
             }
         }
 
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(Constant.implicitlyWait, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(Constant.implicitlyWait, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(configFileReader.getImplicitlyWait(), TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get(Constant.URL);
+        driver.get(configFileReader.getURL());
 
     }
 

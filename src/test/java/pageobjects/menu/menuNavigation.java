@@ -1,6 +1,5 @@
 package pageobjects.menu;
 
-import pageobjects.pages.SearchResultsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +19,7 @@ public class menuNavigation {
 
         TestBase.driver = driver;
     }
+    public By schemaTitle = By.xpath("//div[@class='schema-product__title']");
 
     public WebElement checkBox(String text) {
         String checkboxLocator = "//li/label[@class='schema-filter__checkbox-item']/span[text()='%s']";
@@ -41,22 +41,23 @@ public class menuNavigation {
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
     }
 
+    void clickAndWait(WebElement elem){
+        elem.click();
+        wait.until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) TestBase.driver).executeScript("return document.readyState").equals("complete"));
+    }
+
     public void selectCheckbox(String checkboxName) {
         wait.until(ExpectedConditions.elementToBeClickable(checkBox(checkboxName)));
         js.executeScript("arguments[0].scrollIntoView();", checkBox(checkboxName));
-        checkBox(checkboxName).click();
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__title']")));
-        wait.until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) TestBase.driver).executeScript("return document.readyState").equals("complete"));
-
-
+        clickAndWait(checkBox(checkboxName));
 
     }
 
     public void selectLastCheckbox(String checkboxName) {
         wait.until(ExpectedConditions.elementToBeClickable(checkBox(checkboxName)));
         js.executeScript("arguments[0].scrollIntoView();", checkBox(checkboxName));
-        checkBox(checkboxName).click();
+        clickAndWait(checkBox(checkboxName));
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__description']")));
         wait.until(ExpectedConditions. stalenessOf(element));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__description']")));

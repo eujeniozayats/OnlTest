@@ -9,14 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 import testcases.TestBase;
 
-import utils.Constant;
-
 public class MainPage {
     static WebDriver driver = TestBase.driver;
     private final String myLocator = "//span[text()='%s' and @class='b-main-navigation__text']";
     private JavascriptExecutor js = (JavascriptExecutor) TestBase.driver;
     private WebDriverWait wait = new WebDriverWait(TestBase.driver, 10);
-
 
     public MainPage(WebDriver driver) {
         TestBase.driver = driver;
@@ -31,8 +28,7 @@ public class MainPage {
         wait.until(ExpectedConditions.elementToBeClickable(selectElement("Каталог")));
         js.executeScript("arguments[0].scrollIntoView();", selectElement("Каталог"));
         selectElement("Каталог").click();
-        wait.until(ExpectedConditions.titleIs(Constant.catalogTitle));
-        softAssertion.assertEquals(TestBase.driver.getTitle(), Constant.catalogTitle);
+        softAssertion.assertEquals(TestBase.driver.getTitle(), "Каталог Onliner");
         softAssertion.assertAll();
 
     }

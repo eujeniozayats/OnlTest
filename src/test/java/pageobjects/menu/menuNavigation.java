@@ -49,8 +49,23 @@ public class menuNavigation {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__title']")));
         wait.until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) TestBase.driver).executeScript("return document.readyState").equals("complete"));
-        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__title']")));
-        //wait.until(ExpectedConditions.stalenessOf(element));
+
+
+
+    }
+
+    public void selectLastCheckbox(String checkboxName) {
+        wait.until(ExpectedConditions.elementToBeClickable(checkBox(checkboxName)));
+        js.executeScript("arguments[0].scrollIntoView();", checkBox(checkboxName));
+        checkBox(checkboxName).click();
+        SearchResultsPage search = new SearchResultsPage(TestBase.driver);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__title']")));
+        wait.until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) TestBase.driver).executeScript("return document.readyState").equals("complete"));
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__description']")));
+        wait.until(ExpectedConditions. stalenessOf(element));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__description']"))).getText();
+
 
     }
 

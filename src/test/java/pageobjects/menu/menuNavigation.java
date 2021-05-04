@@ -58,6 +58,7 @@ public class menuNavigation {
         wait.until(ExpectedConditions.elementToBeClickable(checkBox(checkboxName)));
         js.executeScript("arguments[0].scrollIntoView();", checkBox(checkboxName));
         clickAndWait(checkBox(checkboxName));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__title']")));
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__description']")));
         wait.until(ExpectedConditions. stalenessOf(element));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__description']")));

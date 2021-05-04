@@ -16,7 +16,6 @@ public class OnlinerTest {
     static MainPage mainPage;
     static SearchResultsPage search;
     static SoftAssert softAssert;
-    public static ConfigFileReader configFileReader;
 
 
 

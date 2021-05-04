@@ -6,7 +6,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
 import testcases.TestBase;
+
+import utils.Constant;
 
 public class MainPage {
     static WebDriver driver = TestBase.driver;
@@ -24,8 +27,13 @@ public class MainPage {
     }
 
     public void openCatalog() {
+        SoftAssert softAssertion = new SoftAssert();
         wait.until(ExpectedConditions.elementToBeClickable(selectElement("Каталог")));
         js.executeScript("arguments[0].scrollIntoView();", selectElement("Каталог"));
         selectElement("Каталог").click();
+        wait.until(ExpectedConditions.titleIs(Constant.catalogTitle));
+        softAssertion.assertEquals(TestBase.driver.getTitle(), Constant.catalogTitle);
+        softAssertion.assertAll();
+
     }
 }

@@ -1,10 +1,14 @@
 package testcases;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 import pageobjects.menu.menuNavigation;
 import pageobjects.pages.CatalogPage;
 import pageobjects.pages.MainPage;
 import pageobjects.pages.SearchResultsPage;
+
+import utils.Constant;
 
 
 public class OnlinerTest {
@@ -12,6 +16,7 @@ public class OnlinerTest {
     static CatalogPage catalogPage;
     static MainPage mainPage;
     static SearchResultsPage search;
+    static SoftAssert softAssert;
 
 
     @BeforeClass
@@ -26,6 +31,7 @@ public class OnlinerTest {
     public void getToSearchResult(String brand, String price,
                                   String resolution, String inch40, String inch50) {
 
+        softAssert = new SoftAssert();
         mainPage = new MainPage((TestBase.driver));
         mainPage.openCatalog();
 
@@ -33,6 +39,8 @@ public class OnlinerTest {
         catalogPage.selectCategory("Электроника");
         catalogPage.selectSubCategory("Телевидение");
         catalogPage.selectDropdownItem("Телевизоры");
+        softAssert.assertEquals(TestBase.driver.getTitle(), Constant.teleTitle);
+
 
         menu = new menuNavigation(TestBase.driver);
         menu.selectCheckbox(brand);
@@ -51,6 +59,7 @@ public class OnlinerTest {
 
     @AfterClass
     public void tearDown() {
+        softAssert.assertAll();
         TestBase.quit();
     }
 }

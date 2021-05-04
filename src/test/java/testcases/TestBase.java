@@ -30,8 +30,8 @@ public class TestBase {
         }
 
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Constant.implicitlyWait, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(Constant.implicitlyWait, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(Constant.URL);
 

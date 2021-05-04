@@ -61,7 +61,7 @@ public class menuNavigation {
         SearchResultsPage search = new SearchResultsPage(TestBase.driver);
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__description']")));
         wait.until(ExpectedConditions. stalenessOf(element));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__description']"))).getText();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__description']")));
 
 
     }

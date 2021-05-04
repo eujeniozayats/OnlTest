@@ -13,11 +13,13 @@ import utils.Constant;
 public class TestBase {
 
     public static WebDriver driver = null;
-    public static String browserName = Constant.browserName;
-    public static String projectPath = System.getProperty(Constant.projectPath);
+    public static String browserName;
+    public static String projectPath;
 
 
     public static void initialize() {
+        browserName = Constant.browserName;
+        projectPath = System.getProperty(Constant.projectPath);
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 

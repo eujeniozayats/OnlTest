@@ -40,12 +40,6 @@ public class OnlinerTest {
         menu.selectCheckbox(resolution);
         menu.selectCheckbox(inch40);
         menu.selectLastCheckbox(inch50);
-        /*try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 
         search = new SearchResultsPage(TestBase.driver);
         search.validateSearchList(search.titleResultsList, brand);

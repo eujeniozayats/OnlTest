@@ -50,7 +50,7 @@ public class menuNavigation {
         wait.until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) TestBase.driver).executeScript("return document.readyState").equals("complete"));
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-product__title']")));
-        wait.until(ExpectedConditions.stalenessOf(element));
+        //wait.until(ExpectedConditions.stalenessOf(element));
 
     }
 

@@ -27,9 +27,9 @@ public class OnlinerTest {
 
 
     @Test
-    @Parameters({"brand", "testPrice", "resolution", "40inch", "50inch"})
+    @Parameters({"brand", "testPrice", "resolution", "minDiagonal", "maxDiagonal"})
     public void getToSearchResult(String brand, String price,
-                                  String resolution, String inch40, String inch50) {
+                                  String resolution, String minDiagonal, String maxDiagonal) {
         softAssert = new SoftAssert();
         mainPage = new MainPage((TestBase.driver));
         mainPage.openCatalog();
@@ -45,14 +45,14 @@ public class OnlinerTest {
         menu.selectCheckbox(brand);
         menu.setPrice(price);
         menu.selectCheckbox(resolution);
-        menu.selectCheckbox(inch40);
-        menu.selectLastCheckbox(inch50);
+        menu.selectCheckbox(minDiagonal);
+        menu.selectCheckbox(maxDiagonal);
 
         search = new SearchResultsPage(TestBase.driver);
         search.validateSearchList(search.titleResultsList, brand);
         search.validateSearchList(search.descriptionResultsList, resolution);
         search.validateSearchPrices(search.descriptionResultsPrice, price);
-        search.validateSearchInches(search.descriptionResultsList, inch40, inch50);
+        search.validateSearchInches(search.descriptionResultsList, minDiagonal, maxDiagonal);
     }
 
 

@@ -37,20 +37,17 @@ public class CatalogPage {
 
     public void selectCategory(String category) {
         wait.until(ExpectedConditions.elementToBeClickable(selectElement(category)));
-        //js.executeScript("arguments[0].scrollIntoView();", selectElement(category));
         selectElement(category).click();
     }
 
     public void selectSubCategory(String subCategory) {
         wait.until(ExpectedConditions.elementToBeClickable(selectSubElement(subCategory)));
-        //js.executeScript("arguments[0].scrollIntoView();", selectSubElement(subCategory));
         selectSubElement(subCategory).click();
 
     }
 
     public void selectDropdownItem(String dropItem) {
         wait.until(ExpectedConditions.elementToBeClickable(dropdownItem(dropItem)));
-        //js.executeScript("arguments[0].scrollIntoView();", dropdownItem(dropItem));
         dropdownItem(dropItem).click();
     }
 }

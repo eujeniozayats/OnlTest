@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="C:/Users/Yauheni.Zayats/Desktop/OnlTest">
+    <test verbose="2" preserve-order="true" name="OnlinerTest">
         <parameter name="brand" value="Samsung"/>
         <parameter name="testPrice" value="1000"/>
         <parameter name="resolution" value="1920x1080 (Full HD)"/>
-        <parameter name="40inch" value='40"'/>
-        <parameter name="50inch" value='50"'/>
+        <parameter name="minDiagonal" value='40"'/>
+        <parameter name="maxDiagonal" value='50"'/>
         <classes>
             <class name="testcases.OnlinerTest"/>
 

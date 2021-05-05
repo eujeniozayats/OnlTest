@@ -1,16 +1,12 @@
 package pageobjects.pages;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 import testcases.TestBase;
 
 import java.util.List;
 
 public class SearchResultsPage {
-    static WebDriver driver = TestBase.driver;
-    private JavascriptExecutor js = (JavascriptExecutor) TestBase.driver;
-    private WebDriverWait wait = new WebDriverWait(TestBase.driver, 10);
 
     public SearchResultsPage(WebDriver driver) {
         TestBase.driver = driver;
@@ -22,7 +18,6 @@ public class SearchResultsPage {
 
     public void validateSearchList(List<WebElement> listToValidate, String stringToValidate) {
         SoftAssert softAssertion = new SoftAssert();
-
 
         for (int i = 0; i < listToValidate.size(); i++) {
             softAssertion.assertTrue(listToValidate.get(i).getText().contains(stringToValidate), "Item validation failed at instance " + i + ".");
@@ -44,7 +39,6 @@ public class SearchResultsPage {
     public void validateSearchInches(List<WebElement> listToValidate, String minInch, String maxInch) {
         SoftAssert softAssertion = new SoftAssert();
 
-
         for (int i = 0; i < listToValidate.size(); i++) {
             int parsedInt = Integer.parseInt(listToValidate.get(i).getText().substring(0, 2));
             if (parsedInt < Integer.parseInt(maxInch.substring(0, maxInch.length() - 1)) | parsedInt > Integer.parseInt(minInch.substring(0, minInch.length() - 1))) {
@@ -54,7 +48,6 @@ public class SearchResultsPage {
 
             softAssertion.assertAll();
         }
-
 
     }
 }

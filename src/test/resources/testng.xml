@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="OnlinerTest">
+        <parameter name="catDir" value="Каталог"/>
         <parameter name="brand" value="Samsung"/>
         <parameter name="testPrice" value="1000"/>
         <parameter name="resolution" value="1920x1080 (Full HD)"/>

@@ -16,7 +16,7 @@ public class OnlinerTest {
     static MainPage mainPage;
     static SearchResultsPage search;
     static SoftAssert softAssert;
-
+    static ConfigFileReader configFileReader;
 
 
     @BeforeClass
@@ -27,12 +27,13 @@ public class OnlinerTest {
 
 
     @Test
-    @Parameters({"brand", "testPrice", "resolution", "minDiagonal", "maxDiagonal"})
-    public void getToSearchResult(String brand, String price,
+    @Parameters({"catDir", "brand", "testPrice", "resolution", "minDiagonal", "maxDiagonal"})
+    public void getToSearchResult(String catDir, String brand, String price,
                                   String resolution, String minDiagonal, String maxDiagonal) {
+        configFileReader = new ConfigFileReader();
         softAssert = new SoftAssert();
         mainPage = new MainPage((TestBase.driver));
-        mainPage.openCatalog();
+        mainPage.navigateSection(catDir);
 
         catalogPage = new CatalogPage(TestBase.driver);
         catalogPage.selectCategory("Электроника");
@@ -47,6 +48,7 @@ public class OnlinerTest {
         menu.selectCheckbox(resolution);
         menu.selectCheckbox(minDiagonal);
         menu.selectCheckbox(maxDiagonal);
+        menu.WaitTillResultLoad();
 
         search = new SearchResultsPage(TestBase.driver);
         search.validateSearchList(search.titleResultsList, brand);
